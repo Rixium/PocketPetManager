@@ -13,5 +13,6 @@ namespace Client.Persistence
         void Save();
         void Add(Item item);
         IReadOnlyCollection<Item> Get();
+        void Update(Item item);
     }
 }

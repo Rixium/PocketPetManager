@@ -81,5 +81,20 @@ namespace Client.Persistence
         public void Add(Item item) => _items.Add(item);
 
         public IReadOnlyCollection<Item> Get() => _items.ToImmutableList();
+
+        public void Update(Item item)
+        {
+            for (var i = 0; i < _items.Count; i++)
+            {
+                var currItem = _items[i];
+                if (currItem.ItemId != item.ItemId)
+                {
+                    continue;
+                }
+
+                _items[i] = item;
+                break;
+            }
+        }
     }
 }

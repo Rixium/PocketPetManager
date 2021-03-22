@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Client.Builders;
 using Client.Models;
 using Client.Persistence;
@@ -24,8 +25,15 @@ namespace Client.Services
 
             itemBuilder.SetItemId(items.Count + 1);
 
-            var item = itemBuilder.Build();
-            _itemStore.Add(item);
+            var newItem = itemBuilder.Build();
+
+            if (GetItems().Any(item => item.ItemId == newItem.ItemId))
+            {
+                _itemStore.Update(newItem);
+                return;
+            }
+
+            _itemStore.Add(newItem);
         }
     }
 }
