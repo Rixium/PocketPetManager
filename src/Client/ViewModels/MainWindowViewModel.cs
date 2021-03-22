@@ -9,8 +9,8 @@ namespace Client.ViewModels
     internal class MainWindowViewModel
     {
         private readonly IItemStore _itemStore;
-        public DelegateCommand SaveAsJsonCommand => new DelegateCommand(SaveAsJson);
-        public DelegateCommand ExportAsLuaCommand => new DelegateCommand(ExportAsLua);
+        public DelegateCommand SaveAsJsonCommand => new(SaveAsJson);
+        public DelegateCommand ExportAsLuaCommand => new(ExportAsLua);
 
         public MainWindowViewModel(IItemStore itemStore)
         {
