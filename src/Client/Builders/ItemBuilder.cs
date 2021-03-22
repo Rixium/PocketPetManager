@@ -1,4 +1,5 @@
-﻿using Client.Models;
+﻿using System;
+using Client.Models;
 using JetBrains.Annotations;
 
 namespace Client.Builders
@@ -15,6 +16,7 @@ namespace Client.Builders
         private long? _experienceToLevel;
         private long? _levelToEvolve;
         private long? _evolvesTo;
+        private int? _value;
 
         public void SetItemId(int id, bool overwrite)
         {
@@ -34,13 +36,15 @@ namespace Client.Builders
 
         public void SetDescription(string description) => _description = description;
 
-        public void SetModelId(string modelId) => _modelId = Parse(modelId);
+        public void SetModelId(string modelId) => _modelId = ParseLong(modelId);
 
-        public void SetExperienceToLevel(string experienceToLevel) => _experienceToLevel = Parse(experienceToLevel);
+        public void SetExperienceToLevel(string experienceToLevel) => _experienceToLevel = ParseLong(experienceToLevel);
 
-        public void SetLevelToEvolve(string levelToEvolve) => _levelToEvolve = Parse(levelToEvolve);
+        public void SetLevelToEvolve(string levelToEvolve) => _levelToEvolve = ParseLong(levelToEvolve);
 
-        public void SetEvolvesTo(string evolvesTo) => _evolvesTo = Parse(evolvesTo);
+        public void SetEvolvesTo(string evolvesTo) => _evolvesTo = ParseLong(evolvesTo);
+
+        public void SetValue(string value) => _value = ParseInt(value);
 
         public Item Build()
         {
@@ -54,7 +58,8 @@ namespace Client.Builders
                 ModelId = _modelId,
                 ExperienceToLevel = _experienceToLevel,
                 LevelToEvolve = _levelToEvolve,
-                EvolvesTo = _evolvesTo
+                EvolvesTo = _evolvesTo, 
+                Value = _value
             };
 
             _id = 0;
@@ -62,9 +67,21 @@ namespace Client.Builders
             return newItem;
         }
 
-        private static long? Parse(string s)
+        private static long? ParseLong(string s)
         {
             var parsed = long.TryParse(s, out var result);
+
+            if (!parsed)
+            {
+                return null;
+            }
+
+            return result;
+        }
+
+        private static int? ParseInt(string s)
+        {
+            var parsed = int.TryParse(s, out var result);
 
             if (!parsed)
             {

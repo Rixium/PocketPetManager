@@ -13,6 +13,7 @@ namespace Client.Builders
         void SetExperienceToLevel(string experienceToLevel);
         void SetLevelToEvolve(string levelToEvolve);
         void SetEvolvesTo(string evolvesTo);
+        void SetValue(string value);
         Item Build();
     }
 }

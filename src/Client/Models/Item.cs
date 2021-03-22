@@ -11,5 +11,6 @@
         public long? ExperienceToLevel { get; init; }
         public long? LevelToEvolve { get; init; }
         public long? EvolvesTo { get; init; }
+        public int? Value { get; init; }
     }
 }
