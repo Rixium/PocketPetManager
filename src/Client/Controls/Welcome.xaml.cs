@@ -1,8 +1,8 @@
 ﻿namespace Client.Controls
 {
-    public partial class WelcomeControl
+    public partial class Welcome
     {
-        public WelcomeControl()
+        public Welcome()
         {
             InitializeComponent();
         }

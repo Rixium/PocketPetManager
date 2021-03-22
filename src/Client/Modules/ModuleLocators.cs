@@ -14,7 +14,7 @@ namespace Client.Modules
         }
 
         public void OnInitialized(IContainerProvider containerProvider) =>
-            _regionManager.RegisterViewWithRegion("Shell", typeof(Controls.WelcomeControl));
+            _regionManager.RegisterViewWithRegion("Shell", typeof(Controls.Welcome));
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
