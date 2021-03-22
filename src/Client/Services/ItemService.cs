@@ -26,7 +26,6 @@ namespace Client.Services
 
             var item = itemBuilder.Build();
             _itemStore.Add(item);
-            _itemStore.Save();
         }
     }
 }
