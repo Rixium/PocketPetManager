@@ -7,9 +7,9 @@
         public string Name { get; init; }
         public string Type { get; init; }
         public string Description { get; init; }
-        public int? ModelId { get; init; }
-        public int? ExperienceToLevel { get; init; }
-        public int? LevelToEvolve { get; init; }
-        public int? EvolvesTo { get; init; }
+        public long? ModelId { get; init; }
+        public long? ExperienceToLevel { get; init; }
+        public long? LevelToEvolve { get; init; }
+        public long? EvolvesTo { get; init; }
     }
 }

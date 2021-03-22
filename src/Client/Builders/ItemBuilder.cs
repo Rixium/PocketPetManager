@@ -11,10 +11,10 @@ namespace Client.Builders
         private string _name;
         private string _type;
         private string _description;
-        private int? _modelId;
-        private int? _experienceToLevel;
-        private int? _levelToEvolve;
-        private int? _evolvesTo;
+        private long? _modelId;
+        private long? _experienceToLevel;
+        private long? _levelToEvolve;
+        private long? _evolvesTo;
 
         public void SetItemId(int id, bool overwrite)
         {
@@ -42,8 +42,9 @@ namespace Client.Builders
 
         public void SetEvolvesTo(string evolvesTo) => _evolvesTo = Parse(evolvesTo);
 
-        public Item Build() =>
-            new Item
+        public Item Build()
+        {
+            var newItem = new Item
             {
                 ItemId = _id,
                 ItemType = _itemType,
@@ -56,9 +57,14 @@ namespace Client.Builders
                 EvolvesTo = _evolvesTo
             };
 
-        private static int? Parse(string s)
+            _id = 0;
+
+            return newItem;
+        }
+
+        private static long? Parse(string s)
         {
-            var parsed = int.TryParse(s, out var result);
+            var parsed = long.TryParse(s, out var result);
 
             if (!parsed)
             {
