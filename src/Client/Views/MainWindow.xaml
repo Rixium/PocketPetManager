@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="Pocket Pets Manager" Height="450" Width="800">
     <Grid>
-        <ItemsControl prism:RegionManager.RegionName="Shell"/>
+        <ContentControl prism:RegionManager.RegionName="Shell" />
     </Grid>
 </Window>
