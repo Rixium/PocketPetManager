@@ -13,6 +13,7 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File" Padding="10">
+                <MenuItem Padding="10" Header="_Load" Command="{Binding LoadItemsCommand}" />
                 <MenuItem Padding="10" Header="_Save JSON" Command="{Binding SaveAsJsonCommand}" />
                 <MenuItem Padding="10" Header="_Export as LUA" Command="{Binding ExportAsLuaCommand}"/>
             </MenuItem>
