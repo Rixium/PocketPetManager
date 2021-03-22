@@ -15,6 +15,7 @@ namespace Client.ViewModels
 
         public static string[] ItemTypes => new[]
         {
+            "",
             "Seed",
             "Pet",
             "Coin"
@@ -22,6 +23,7 @@ namespace Client.ViewModels
 
         public static string[] PetTypes => new[]
         {
+            "",
             "Pixie",
             "Cool",
             "Brute"
