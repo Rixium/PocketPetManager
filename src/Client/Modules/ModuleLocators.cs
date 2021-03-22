@@ -1,4 +1,5 @@
-﻿using Prism.Ioc;
+﻿using Client.Views;
+using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
 
@@ -14,7 +15,7 @@ namespace Client.Modules
         }
 
         public void OnInitialized(IContainerProvider containerProvider) =>
-            _regionManager.RegisterViewWithRegion("Shell", typeof(Views.Welcome));
+            _regionManager.RegisterViewWithRegion("Shell", typeof(Welcome));
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
