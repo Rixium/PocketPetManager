@@ -1,27 +1,16 @@
-﻿using System;
-using Client.Persistence;
-using Client.Views;
-using Prism.Commands;
+﻿using Client.Persistence;
+using JetBrains.Annotations;
 using Prism.Mvvm;
-using Prism.Regions;
 
 namespace Client.ViewModels
 {
+    [UsedImplicitly]
     public class WelcomeViewModel : BindableBase
     {
-        private readonly IRegionManager _regionManager;
-        private readonly IItemStore _itemStore;
-
-        public WelcomeViewModel(IRegionManager regionManager, IItemStore itemStore)
+        public WelcomeViewModel(IItemStore itemStore)
         {
-            _regionManager = regionManager;
-            _itemStore = itemStore;
-            
-            _itemStore.Create("myitemstore.json");
-            _itemStore.Read();
+            itemStore.Create("myitemstore.json");
+            itemStore.Read();
         }
-
-        public DelegateCommand CreateNewPetCommand =>
-            new(() => _regionManager.RequestNavigate("Shell", nameof(NewPet)));
     }
 }

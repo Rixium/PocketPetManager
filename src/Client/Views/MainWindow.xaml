@@ -4,9 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prism="http://prismlibrary.com/"
+        xmlns:views="clr-namespace:Client.Views"
         mc:Ignorable="d"
         Title="Pocket Pets Manager" Height="450" Width="800">
     <Grid>
-        <ContentControl prism:RegionManager.RegionName="Shell" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <views:NavigationPane Grid.Column="0"/>
+        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="Shell" />
     </Grid>
 </Window>
