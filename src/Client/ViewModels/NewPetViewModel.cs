@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Client.Builders;
 using Client.Models;
 using Client.Services;
@@ -14,7 +13,7 @@ namespace Client.ViewModels
     [UsedImplicitly]
     internal class NewPetViewModel : BindableBase, INavigationAware
     {
-        private IItemBuilder _itemBuilder;
+        private readonly IItemBuilder _itemBuilder;
         private readonly IItemService _itemService;
 
         public static string[] ItemTypes => new[]
