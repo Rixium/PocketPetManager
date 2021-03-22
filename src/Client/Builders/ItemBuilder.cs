@@ -16,7 +16,15 @@ namespace Client.Builders
         private int? _levelToEvolve;
         private int? _evolvesTo;
 
-        public void SetItemId(int id) => _id = id;
+        public void SetItemId(int id)
+        {
+            if (_id != 0)
+            {
+                return;
+            }
+
+            _id = id;
+        }
 
         public void SetItemType(string type) => _itemType = type;
 
