@@ -34,7 +34,7 @@ namespace Client.Persistence
             {
                 _items = JsonSerializer.Deserialize<IList<Item>>(fileText);
             }
-            catch (JsonException e)
+            catch (JsonException)
             {
                 // Ignored, File is probably empty
             }
@@ -53,12 +53,10 @@ namespace Client.Persistence
 
             File.WriteAllText(filePath, fileText);
 
-            SaveAsLua(filePath);
-
             _itemStorePath = filePath;
         }
 
-        private void SaveAsLua(string filePath)
+        public void SaveAsLua(string filePath)
         {
             var serializer = new Newtonsoft.Json.JsonSerializer()
             {
@@ -75,7 +73,7 @@ namespace Client.Persistence
                 serializer.Serialize(jlw, _items);
             }
 
-            File.WriteAllText($"{filePath}.luatable", stringWriter.ToString());
+            File.WriteAllText(filePath, stringWriter.ToString());
         }
 
         public void Save() => SaveToFile(_itemStorePath);

@@ -9,6 +9,7 @@ namespace Client.Persistence
         void ReadFromFile(string filePath);
         void Read();
         void SaveToFile(string filePath);
+        void SaveAsLua(string filePath);
         void Save();
         void Add(Item item);
         IReadOnlyCollection<Item> Get();
