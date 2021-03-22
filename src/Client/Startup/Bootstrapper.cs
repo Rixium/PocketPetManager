@@ -1,6 +1,8 @@
 ﻿using System.Windows;
+using Client.Builders;
 using Client.Views;
 using Client.Modules;
+using Client.Services;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Mvvm;
@@ -12,6 +14,8 @@ namespace Client.Startup
     {
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<IItemService, ItemService>();
+            containerRegistry.Register<IItemBuilder, ItemBuilder>();
         }
 
         protected override void InitializeShell(DependencyObject shell)
