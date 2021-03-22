@@ -1,17 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using Autofac;
+using Client.Modules;
 
 namespace Client
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+    public partial class App
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            var container = new ContainerBuilder();
+            container.RegisterModule<ClientModule>();
+
+            using (var scope = container.Build())
+            {
+                var window = scope.Resolve<MainWindow>();
+                window.Show();
+            }
+
+            base.OnStartup(e);
+        }
     }
 }
