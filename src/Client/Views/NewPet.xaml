@@ -9,23 +9,36 @@
              d:DataContext="{d:DesignInstance viewModels:NewPetViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
     <StackPanel>
         <TextBlock Text="Item Type" />
         <ComboBox ItemsSource="{Binding ItemTypes}" SelectedIndex="{Binding SelectedItemType}" />
         <TextBlock Text="Name" />
-        <TextBox Text="{Binding ItemName}" />
-        <TextBlock Text="Pet Type" />
         <ComboBox ItemsSource="{Binding PetTypes}" SelectedIndex="{Binding SelectedPetType}" />
         <TextBlock Text="Description" />
         <TextBox Text="{Binding Description}" />
         <TextBlock Text="Model ID" />
-        <TextBox Text="{Binding ModelId}" />
-        <TextBlock Text="Experience To Level" />
-        <TextBox Text="{Binding ExperienceToLevel}" />
-        <TextBlock Text="Level to Evolve" />
-        <TextBox Text="{Binding LevelToEvolution}" />
-        <TextBlock Text="Evolves To" />
-        <Button Content="Select Evolution" Command="{Binding SelectEvolutionCommand}" />
+        <StackPanel
+            Visibility="{Binding PetPropertiesAreVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+            Orientation="Vertical">
+            <TextBox Text="{Binding ItemName}" />
+            <TextBlock Text="Pet Type" />
+            <TextBox Text="{Binding ModelId}" />
+            <TextBlock Text="Experience To Level" />
+            <TextBox Text="{Binding ExperienceToLevel}" />
+            <TextBlock Text="Level to Evolve" />
+            <TextBox Text="{Binding LevelToEvolution}" />
+            <TextBlock Text="Evolves To" />
+            <Button Content="Select Evolution" Command="{Binding SelectEvolutionCommand}" />
+        </StackPanel>
+        <StackPanel
+            Visibility="{Binding ItemPropertiesAreVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+            Orientation="Vertical">
+            <TextBlock Text="Value" />
+            <TextBox Text="{Binding CoinValue}" />
+        </StackPanel>
         <Button Content="Save" Command="{Binding SaveItemCommand}" />
     </StackPanel>
 </UserControl>

@@ -40,10 +40,14 @@ namespace Client.ViewModels
             get => _selectedItemType;
             set
             {
-                if (SetProperty(ref _selectedItemType, value))
+                if (!SetProperty(ref _selectedItemType, value))
                 {
-                    _itemBuilder.SetItemType(ItemTypes.ElementAt(value));
+                    return;
                 }
+
+                _itemBuilder.SetItemType(ItemTypes.ElementAt(value));
+                RaisePropertyChanged(nameof(ItemPropertiesAreVisible));
+                RaisePropertyChanged(nameof(PetPropertiesAreVisible));
             }
         }
 
@@ -117,6 +121,20 @@ namespace Client.ViewModels
             }
         }
 
+        private string _coinValue = "";
+
+        public string CoinValue
+        {
+            get => _coinValue;
+            set
+            {
+                if (SetProperty(ref _coinValue, value))
+                {
+                    _itemBuilder.SetValue(value);
+                }
+            }
+        }
+
         private string _levelToEvolution = "";
 
         public string LevelToEvolution
@@ -130,6 +148,11 @@ namespace Client.ViewModels
                 }
             }
         }
+
+        public bool ItemPropertiesAreVisible => ItemTypes[_selectedItemType] == "Coin";
+
+        public bool PetPropertiesAreVisible => ItemTypes[_selectedItemType] == "Pet" ||
+                                               ItemTypes[_selectedItemType] == "Seed";
 
         public DelegateCommand SelectEvolutionCommand => new(() => { });
 
