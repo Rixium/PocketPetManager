@@ -1,6 +1,4 @@
 ﻿using System.Windows;
-using Autofac;
-using Client.Modules;
 
 namespace Client
 {
@@ -8,15 +6,8 @@ namespace Client
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var container = new ContainerBuilder();
-            container.RegisterModule<ClientModule>();
-
-            using (var scope = container.Build())
-            {
-                var window = scope.Resolve<MainWindow>();
-                window.Show();
-            }
-
+            var bootstrapper = new Bootstrapper();      
+            bootstrapper.Run(); 
             base.OnStartup(e);
         }
     }
