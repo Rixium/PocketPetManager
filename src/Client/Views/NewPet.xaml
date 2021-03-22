@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Client.Views.NewPet"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:Client.ViewModels"
+             xmlns:mvvm="http://prismlibrary.com/"
+             mvvm:ViewModelLocator.AutoWireViewModel="True"
+             d:DataContext="{d:DesignInstance viewModels:NewPetViewModel}"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel>
+        <TextBlock Text="Item Type"/>
+        <ComboBox ItemsSource="{Binding ItemTypes}"/>
+        <TextBlock Text="Name"/>
+        <TextBox Text="{Binding ItemName}"/>
+        <TextBlock Text="Pet Type"/>
+        <ComboBox ItemsSource="{Binding PetTypes}"/>
+        <TextBlock Text="Description"/>
+        <TextBox Text="{Binding Description}"/>
+        <TextBlock Text="Model ID"/>
+        <TextBox Text="{Binding ModelId}"/>
+        <TextBlock Text="Experience To Level"/>
+        <TextBox Text="{Binding ExperienceToLevel}"/>
+        <TextBlock Text="Level to Evolve"/>
+        <TextBox Text="{Binding LevelToEvolution}"/>
+        <TextBlock Text="Evolves To"/>
+        <Button Content="Select Evolution" Command="{Binding SelectEvolutionCommand}"/>
+        <Button Content="Save" Command="{Binding SaveItemCommand}"/>
+    </StackPanel>
+</UserControl>
