@@ -22,7 +22,7 @@ namespace Client.ViewModels
         public IReadOnlyCollection<Item> Items
         {
             get => _items;
-            set => SetProperty(ref _items, value);
+            private set => SetProperty(ref _items, value);
         }
 
         public DelegateCommand Refresh => new(() => Items = _itemService.GetItems());
