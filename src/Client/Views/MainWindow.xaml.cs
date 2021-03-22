@@ -1,4 +1,4 @@
-﻿namespace Client.Controls
+﻿namespace Client.Views
 {
     public partial class MainWindow
     {

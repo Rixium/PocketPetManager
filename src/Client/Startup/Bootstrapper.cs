@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using Client.Controls;
+using Client.Views;
 using Client.Modules;
 using Prism.Ioc;
 using Prism.Modularity;
