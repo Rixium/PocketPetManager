@@ -10,6 +10,8 @@ namespace Client.ViewModels
     internal class NavigationPaneViewModel : BindableBase
     {
         private readonly IRegionManager _regionManager;
+        public DelegateCommand ViewItemsCommand =>
+            new(() => _regionManager.RequestNavigate("Shell", nameof(ViewAll)));
 
         public DelegateCommand CreateNewPetCommand =>
             new(() => _regionManager.RequestNavigate("Shell", nameof(NewPet)));

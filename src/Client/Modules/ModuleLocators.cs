@@ -18,6 +18,7 @@ namespace Client.Modules
         {
             _regionManager.RegisterViewWithRegion("Shell", typeof(Welcome));
             _regionManager.RegisterViewWithRegion("Shell", typeof(NewPet));
+            _regionManager.RegisterViewWithRegion("Shell", typeof(ViewAll));
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)

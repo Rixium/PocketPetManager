@@ -14,16 +14,18 @@
 
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="Padding" Value="10" />
+            <Setter Property="Margin" Value="0 10 0 0"></Setter>
         </Style>
         
         <Style x:Key="BorderStyle" TargetType="Border">
             <Setter Property="Background" Value="#212121"/>
-            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Padding" Value="10 0 10 10"/>
         </Style>
     </UserControl.Resources>
     
     <Border Style="{StaticResource BorderStyle}">
         <StackPanel>
+            <Button Style="{StaticResource ButtonStyle}" Content="View Items" Command="{Binding ViewItemsCommand}" />
             <Button Style="{StaticResource ButtonStyle}" Content="Create New Item" Command="{Binding CreateNewPetCommand}" />
         </StackPanel>
     </Border>
