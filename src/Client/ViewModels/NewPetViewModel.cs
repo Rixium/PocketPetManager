@@ -1,4 +1,5 @@
-﻿using Client.Builders;
+﻿using System.Linq;
+using Client.Builders;
 using Client.Services;
 using JetBrains.Annotations;
 using Prism.Commands;
@@ -19,6 +20,27 @@ namespace Client.ViewModels
             "Coin"
         };
 
+        public static string[] PetTypes => new[]
+        {
+            "Pixie",
+            "Cool",
+            "Brute"
+        };
+
+        private int _selectedItemType;
+
+        public int SelectedItemType
+        {
+            get => _selectedItemType;
+            set
+            {
+                if (SetProperty(ref _selectedItemType, value))
+                {
+                    _itemBuilder.SetItemType(ItemTypes.ElementAt(value));
+                }
+            }
+        }
+
         private string _itemName = "";
 
         public string ItemName
@@ -33,12 +55,19 @@ namespace Client.ViewModels
             }
         }
 
-        public static string[] PetTypes => new[]
+        private int _selectedPetType;
+
+        public int SelectedPetType
         {
-            "Pixie",
-            "Cool",
-            "Brute"
-        };
+            get => _selectedPetType;
+            set
+            {
+                if (SetProperty(ref _selectedPetType, value))
+                {
+                    _itemBuilder.SetType(PetTypes.ElementAt(value));
+                }
+            }
+        }
 
         private string _description = "";
 
@@ -55,6 +84,7 @@ namespace Client.ViewModels
         }
 
         private string _modelId = "";
+
         public string ModelId
         {
             get => _modelId;
@@ -68,6 +98,7 @@ namespace Client.ViewModels
         }
 
         private string _experienceToLevel = "";
+
         public string ExperienceToLevel
         {
             get => _experienceToLevel;
@@ -76,11 +107,12 @@ namespace Client.ViewModels
                 if (SetProperty(ref _experienceToLevel, value))
                 {
                     _itemBuilder.SetExperienceToLevel(value);
-                }  
-            } 
+                }
+            }
         }
 
         private string _levelToEvolution = "";
+
         public string LevelToEvolution
         {
             get => _levelToEvolution;

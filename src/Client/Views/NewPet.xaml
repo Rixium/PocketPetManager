@@ -10,22 +10,22 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
-        <TextBlock Text="Item Type"/>
-        <ComboBox ItemsSource="{Binding ItemTypes}"/>
-        <TextBlock Text="Name"/>
-        <TextBox Text="{Binding ItemName}"/>
-        <TextBlock Text="Pet Type"/>
-        <ComboBox ItemsSource="{Binding PetTypes}"/>
-        <TextBlock Text="Description"/>
-        <TextBox Text="{Binding Description}"/>
-        <TextBlock Text="Model ID"/>
-        <TextBox Text="{Binding ModelId}"/>
-        <TextBlock Text="Experience To Level"/>
-        <TextBox Text="{Binding ExperienceToLevel}"/>
-        <TextBlock Text="Level to Evolve"/>
-        <TextBox Text="{Binding LevelToEvolution}"/>
-        <TextBlock Text="Evolves To"/>
-        <Button Content="Select Evolution" Command="{Binding SelectEvolutionCommand}"/>
-        <Button Content="Save" Command="{Binding SaveItemCommand}"/>
+        <TextBlock Text="Item Type" />
+        <ComboBox ItemsSource="{Binding ItemTypes}" SelectedIndex="{Binding SelectedItemType}" />
+        <TextBlock Text="Name" />
+        <TextBox Text="{Binding ItemName}" />
+        <TextBlock Text="Pet Type" />
+        <ComboBox ItemsSource="{Binding PetTypes}" SelectedIndex="{Binding SelectedPetType}" />
+        <TextBlock Text="Description" />
+        <TextBox Text="{Binding Description}" />
+        <TextBlock Text="Model ID" />
+        <TextBox Text="{Binding ModelId}" />
+        <TextBlock Text="Experience To Level" />
+        <TextBox Text="{Binding ExperienceToLevel}" />
+        <TextBlock Text="Level to Evolve" />
+        <TextBox Text="{Binding LevelToEvolution}" />
+        <TextBlock Text="Evolves To" />
+        <Button Content="Select Evolution" Command="{Binding SelectEvolutionCommand}" />
+        <Button Content="Save" Command="{Binding SaveItemCommand}" />
     </StackPanel>
 </UserControl>
