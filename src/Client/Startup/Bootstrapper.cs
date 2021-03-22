@@ -1,8 +1,9 @@
 ﻿using System.Windows;
+using Client.Controls;
 using Prism.Ioc;
 using Prism.Unity;
 
-namespace Client
+namespace Client.Startup
 {
     internal class Bootstrapper : PrismBootstrapper
     {

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Client.Startup;
 
 namespace Client
 {
