@@ -3,6 +3,7 @@ using Client.Views;
 using Client.Modules;
 using Prism.Ioc;
 using Prism.Modularity;
+using Prism.Mvvm;
 using Prism.Unity;
 
 namespace Client.Startup
@@ -24,6 +25,12 @@ namespace Client.Startup
 
         protected override DependencyObject CreateShell() =>
             Container.Resolve<MainWindow>();
+
+        protected override void ConfigureViewModelLocator()
+        {
+            ViewModelLocationProvider.SetDefaultViewModelFactory(type => Container.Resolve(type));
+            base.ConfigureViewModelLocator();
+        }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
