@@ -96,5 +96,20 @@ namespace Client.Persistence
                 break;
             }
         }
+
+        public void Delete(Item item)
+        {
+            for (var i = 0; i < _items.Count; i++)
+            {
+                var currItem = _items[i];
+                if (currItem.ItemId != item.ItemId)
+                {
+                    continue;
+                }
+
+                _items.RemoveAt(i);
+                break;
+            }
+        }
     }
 }

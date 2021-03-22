@@ -16,7 +16,7 @@ namespace Client.ViewModels
         private readonly IItemService _itemService;
         private readonly IRegionManager _regionManager;
 
-        public int SelectedItem { get; set; }
+        public int SelectedItem { get; set; } = -1;
         private IReadOnlyCollection<Item> _items;
 
         public IReadOnlyCollection<Item> Items
@@ -28,6 +28,7 @@ namespace Client.ViewModels
         public DelegateCommand Refresh => new(() => Items = _itemService.GetItems());
 
         public DelegateCommand EditItemCommand => new(EditSelectedItem);
+        public DelegateCommand DeleteItemCommand => new(DeleteSelectedItem);
 
         public ViewAllViewModel(IItemService itemService, IRegionManager regionManager)
         {
@@ -37,10 +38,26 @@ namespace Client.ViewModels
 
         private void EditSelectedItem()
         {
+            if (SelectedItem < 0 || SelectedItem > _items.Count)
+            {
+                return;
+            }
+
             var navigationParameters = new NavigationParameters();
             var selectedItem = _items.ElementAt(SelectedItem);
             navigationParameters.Add("Item", selectedItem);
             _regionManager.RequestNavigate("Shell", nameof(NewPet), navigationParameters);
+        }
+
+        private void DeleteSelectedItem()
+        {
+            if (SelectedItem < 0 || SelectedItem > _items.Count)
+            {
+                return;
+            }
+
+            _itemService.DeleteItem(_items.ElementAt(SelectedItem));
+            Refresh.Execute();
         }
     }
 }

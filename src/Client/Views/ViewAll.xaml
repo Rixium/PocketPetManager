@@ -27,6 +27,8 @@
                 <Button Style="{StaticResource ButtonStyle}" Content="Refresh" Command="{Binding Refresh}" />
                 <Button Style="{StaticResource ButtonStyle}" Content="Edit Selection"
                         Command="{Binding EditItemCommand}" />
+                <Button Style="{StaticResource ButtonStyle}" Content="Delete Selection"
+                        Command="{Binding DeleteItemCommand}" />
             </StackPanel>
         </Border>
         <DataGrid Grid.Row="1" ItemsSource="{Binding Items}"

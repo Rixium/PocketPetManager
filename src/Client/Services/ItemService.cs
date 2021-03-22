@@ -35,5 +35,7 @@ namespace Client.Services
 
             _itemStore.Add(newItem);
         }
+
+        public void DeleteItem(Item item) => _itemStore.Delete(item);
     }
 }
