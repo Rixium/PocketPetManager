@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Client.Models;
 using Client.Services;
 using JetBrains.Annotations;
@@ -12,8 +13,7 @@ namespace Client.ViewModels
     {
         private readonly IItemService _itemService;
 
-        public ViewAllViewModel(IItemService itemService) => _itemService = itemService;
-
+        public int SelectedItem { get; set; }
         private IReadOnlyCollection<Item> _items;
 
         public IReadOnlyCollection<Item> Items
@@ -23,5 +23,14 @@ namespace Client.ViewModels
         }
 
         public DelegateCommand Refresh => new DelegateCommand(() => Items = _itemService.GetItems());
+
+        public DelegateCommand EditItemCommand => new DelegateCommand(EditSelectedItem);
+
+        public ViewAllViewModel(IItemService itemService) => _itemService = itemService;
+
+        private void EditSelectedItem()
+        {
+            
+        }
     }
 }
