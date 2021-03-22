@@ -13,6 +13,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <views:NavigationPane Grid.Column="0"/>
-        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="Shell" />
+        <Border Grid.Column="1" Padding="10">
+            <ContentControl prism:RegionManager.RegionName="Shell"/>
+        </Border>
     </Grid>
 </Window>

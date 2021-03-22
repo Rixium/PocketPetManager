@@ -9,7 +9,22 @@
              d:DataContext="{d:DesignInstance viewModels:NavigationPaneViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel>
-        <Button Content="Create New Item" Command="{Binding CreateNewPetCommand}" />
-    </StackPanel>
+    
+    <UserControl.Resources>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Padding" Value="10" />
+        </Style>
+        
+        <Style x:Key="BorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="#212121"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Border Style="{StaticResource BorderStyle}">
+        <StackPanel>
+            <Button Style="{StaticResource ButtonStyle}" Content="Create New Item" Command="{Binding CreateNewPetCommand}" />
+        </StackPanel>
+    </Border>
 </UserControl>
