@@ -13,7 +13,7 @@ namespace Client.ViewModels
     [UsedImplicitly]
     internal class NewPetViewModel : BindableBase, INavigationAware
     {
-        private readonly IItemBuilder _itemBuilder;
+        private IItemBuilder _itemBuilder;
         private readonly IItemService _itemService;
 
         public static string[] ItemTypes => new[]
@@ -169,6 +169,7 @@ namespace Client.ViewModels
         {
             if (navigationContext.Parameters["Item"] == null)
             {
+                _itemBuilder = _itemBuilder.New();
                 return;
             }
 

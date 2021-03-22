@@ -58,7 +58,7 @@ namespace Client.Builders
                 ModelId = _modelId,
                 ExperienceToLevel = _experienceToLevel,
                 LevelToEvolve = _levelToEvolve,
-                EvolvesTo = _evolvesTo, 
+                EvolvesTo = _evolvesTo,
                 Value = _value
             };
 
@@ -90,5 +90,7 @@ namespace Client.Builders
 
             return result;
         }
+
+        public IItemBuilder New() => new ItemBuilder();
     }
 }

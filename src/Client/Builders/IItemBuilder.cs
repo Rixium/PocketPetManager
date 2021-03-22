@@ -15,5 +15,6 @@ namespace Client.Builders
         void SetEvolvesTo(string evolvesTo);
         void SetValue(string value);
         Item Build();
+        IItemBuilder New();
     }
 }
