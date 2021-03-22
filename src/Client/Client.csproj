@@ -7,7 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="CXuesong.Luaon.Json" Version="0.2.1" />
       <PackageReference Include="JetBrains.Annotations" Version="2020.3.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
       <PackageReference Include="Prism.Unity" Version="8.0.0.1909" />
     </ItemGroup>
 

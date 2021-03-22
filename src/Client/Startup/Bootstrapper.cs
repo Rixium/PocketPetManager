@@ -2,6 +2,7 @@
 using Client.Builders;
 using Client.Views;
 using Client.Modules;
+using Client.Persistence;
 using Client.Services;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -14,6 +15,7 @@ namespace Client.Startup
     {
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterSingleton<IItemStore, ItemStore>();
             containerRegistry.Register<IItemService, ItemService>();
             containerRegistry.Register<IItemBuilder, ItemBuilder>();
         }
