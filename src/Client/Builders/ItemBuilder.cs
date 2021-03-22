@@ -16,9 +16,9 @@ namespace Client.Builders
         private int? _levelToEvolve;
         private int? _evolvesTo;
 
-        public void SetItemId(int id)
+        public void SetItemId(int id, bool overwrite)
         {
-            if (_id != 0)
+            if (!overwrite && _id != 0)
             {
                 return;
             }

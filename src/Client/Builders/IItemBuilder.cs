@@ -4,7 +4,7 @@ namespace Client.Builders
 {
     public interface IItemBuilder
     {
-        void SetItemId(int id);
+        void SetItemId(int id, bool overwrite);
         void SetItemType(string type);
         void SetName(string name);
         void SetType(string type);

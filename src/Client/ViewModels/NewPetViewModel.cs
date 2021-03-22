@@ -151,12 +151,15 @@ namespace Client.ViewModels
             }
 
             var item = (Item) navigationContext.Parameters["Item"];
-            _itemBuilder.SetItemId(item.ItemId);
+            _itemBuilder.SetItemId(item.ItemId, true);
             ItemName = item.Name;
             Description = item.Description;
             ExperienceToLevel = item.ExperienceToLevel.ToString();
             ModelId = item.ModelId.ToString();
             LevelToEvolution = item.LevelToEvolve.ToString();
+
+            SelectedPetType = PetTypes.ToList().IndexOf(item.Type);
+            SelectedItemType = ItemTypes.ToList().IndexOf(item.ItemType);
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext) =>

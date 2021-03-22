@@ -23,7 +23,7 @@ namespace Client.Services
         {
             var items = GetItems();
 
-            itemBuilder.SetItemId(items.Count + 1);
+            itemBuilder.SetItemId(items.Count + 1, false);
 
             var newItem = itemBuilder.Build();
 
