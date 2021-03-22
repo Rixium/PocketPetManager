@@ -1,16 +1,20 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Client.Builders;
+using Client.Models;
 using Client.Services;
+using Client.Views;
 using JetBrains.Annotations;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Regions;
 
 namespace Client.ViewModels
 {
     [UsedImplicitly]
-    internal class NewPetViewModel : BindableBase
+    internal class NewPetViewModel : BindableBase, INavigationAware
     {
-        private readonly IItemBuilder _itemBuilder;
+        private IItemBuilder _itemBuilder;
         private readonly IItemService _itemService;
 
         public static string[] ItemTypes => new[]
@@ -138,5 +142,28 @@ namespace Client.ViewModels
         }
 
         private void SaveItem() => _itemService.CreateNewItem(_itemBuilder);
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            if (navigationContext.Parameters["Item"] == null)
+            {
+                return;
+            }
+
+            var item = (Item) navigationContext.Parameters["Item"];
+            _itemBuilder.SetItemId(item.ItemId);
+            ItemName = item.Name;
+            Description = item.Description;
+            ExperienceToLevel = item.ExperienceToLevel.ToString();
+            ModelId = item.ModelId.ToString();
+            LevelToEvolution = item.LevelToEvolve.ToString();
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext) =>
+            navigationContext.Uri.ToString() == nameof(NewPet);
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+        }
     }
 }

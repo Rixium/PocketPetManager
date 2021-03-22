@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Client.Models;
 using Client.Services;
+using Client.Views;
 using JetBrains.Annotations;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Regions;
 
 namespace Client.ViewModels
 {
@@ -12,6 +14,7 @@ namespace Client.ViewModels
     internal class ViewAllViewModel : BindableBase
     {
         private readonly IItemService _itemService;
+        private readonly IRegionManager _regionManager;
 
         public int SelectedItem { get; set; }
         private IReadOnlyCollection<Item> _items;
@@ -22,15 +25,22 @@ namespace Client.ViewModels
             set => SetProperty(ref _items, value);
         }
 
-        public DelegateCommand Refresh => new DelegateCommand(() => Items = _itemService.GetItems());
+        public DelegateCommand Refresh => new(() => Items = _itemService.GetItems());
 
-        public DelegateCommand EditItemCommand => new DelegateCommand(EditSelectedItem);
+        public DelegateCommand EditItemCommand => new(EditSelectedItem);
 
-        public ViewAllViewModel(IItemService itemService) => _itemService = itemService;
+        public ViewAllViewModel(IItemService itemService, IRegionManager regionManager)
+        {
+            _itemService = itemService;
+            _regionManager = regionManager;
+        }
 
         private void EditSelectedItem()
         {
-            
+            var navigationParameters = new NavigationParameters();
+            var selectedItem = _items.ElementAt(SelectedItem);
+            navigationParameters.Add("Item", selectedItem);
+            _regionManager.RequestNavigate("Shell", nameof(NewPet), navigationParameters);
         }
     }
 }
