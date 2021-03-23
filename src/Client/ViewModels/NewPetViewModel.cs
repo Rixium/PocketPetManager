@@ -169,7 +169,6 @@ namespace Client.ViewModels
         {
             if (navigationContext.Parameters["Item"] == null)
             {
-                _itemBuilder = _itemBuilder.New();
                 return;
             }
 

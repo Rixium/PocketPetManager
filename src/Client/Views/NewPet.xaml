@@ -11,34 +11,56 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="17" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="0 5 0 5" />
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Padding" Value="10" />
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="FontSize" Value="15" />
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Margin" Value="0 10 0 10" />
+        </Style>
     </UserControl.Resources>
-    <StackPanel>
-        <TextBlock Text="Item Type" />
-        <ComboBox ItemsSource="{Binding ItemTypes}" SelectedIndex="{Binding SelectedItemType}" />
-        <TextBlock Text="Name" />
-        <ComboBox ItemsSource="{Binding PetTypes}" SelectedIndex="{Binding SelectedPetType}" />
-        <TextBlock Text="Description" />
-        <TextBox Text="{Binding Description}" />
-        <TextBlock Text="Model ID" />
-        <StackPanel
-            Visibility="{Binding PetPropertiesAreVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
-            Orientation="Vertical">
+    <ScrollViewer>
+        <StackPanel>
+            <TextBlock Text="Item Type" />
+            <ComboBox ItemsSource="{Binding ItemTypes}" SelectedIndex="{Binding SelectedItemType}" />
+            <TextBlock Text="Name" />
             <TextBox Text="{Binding ItemName}" />
-            <TextBlock Text="Pet Type" />
-            <TextBox Text="{Binding ModelId}" />
-            <TextBlock Text="Experience To Level" />
-            <TextBox Text="{Binding ExperienceToLevel}" />
-            <TextBlock Text="Level to Evolve" />
-            <TextBox Text="{Binding LevelToEvolution}" />
-            <TextBlock Text="Evolves To" />
-            <Button Content="Select Evolution" Command="{Binding SelectEvolutionCommand}" />
+            <TextBlock Text="Description" />
+            <TextBox Text="{Binding Description}" />
+            <StackPanel
+                Visibility="{Binding PetPropertiesAreVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Orientation="Vertical">
+                <TextBlock Text="Pet Type" />
+                <ComboBox ItemsSource="{Binding PetTypes}" SelectedIndex="{Binding SelectedPetType}" />
+                <TextBlock Text="Model ID" />
+                <TextBox Text="{Binding ModelId}" />
+                <TextBlock Text="Experience To Level" />
+                <TextBox Text="{Binding ExperienceToLevel}" />
+                <TextBlock Text="Level to Evolve" />
+                <TextBox Text="{Binding LevelToEvolution}" />
+                <TextBlock Text="Evolves To" />
+                <Button Content="Select Evolution" Command="{Binding SelectEvolutionCommand}" />
+            </StackPanel>
+            <StackPanel
+                Visibility="{Binding ItemPropertiesAreVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Orientation="Vertical">
+                <TextBlock Text="Value" />
+                <TextBox Text="{Binding CoinValue}" />
+            </StackPanel>
+            <Button Content="Save" Command="{Binding SaveItemCommand}" />
         </StackPanel>
-        <StackPanel
-            Visibility="{Binding ItemPropertiesAreVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
-            Orientation="Vertical">
-            <TextBlock Text="Value" />
-            <TextBox Text="{Binding CoinValue}" />
-        </StackPanel>
-        <Button Content="Save" Command="{Binding SaveItemCommand}" />
-    </StackPanel>
+    </ScrollViewer>
 </UserControl>
