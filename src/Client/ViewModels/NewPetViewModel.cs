@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Client.Builders;
 using Client.Models;
 using Client.Services;
@@ -15,6 +16,7 @@ namespace Client.ViewModels
     {
         private IItemBuilder _itemBuilder;
         private readonly IItemService _itemService;
+        private readonly IRegionManager _regionManager;
 
         public static string[] ItemTypes => new[]
         {
@@ -75,6 +77,23 @@ namespace Client.ViewModels
                 {
                     _itemBuilder.SetType(PetTypes.ElementAt(value));
                 }
+            }
+        }
+
+        private int _selectedEvolution;
+
+        public int SelectedEvolution
+        {
+            get => _selectedEvolution;
+            set
+            {
+                if (!SetProperty(ref _selectedEvolution, value))
+                {
+                    return;
+                }
+
+                var evolution = EvolutionOptions.ElementAt(_selectedEvolution);
+                _itemBuilder.SetEvolvesTo(evolution.ItemId.ToString());
             }
         }
 
@@ -148,25 +167,33 @@ namespace Client.ViewModels
             }
         }
 
+        public IReadOnlyCollection<Item> EvolutionOptions =>
+            _itemService.GetItems().Where(x => x.ItemType != "Coin").ToList();
+
         public bool ItemPropertiesAreVisible => ItemTypes[_selectedItemType] == "Coin";
 
         public bool PetPropertiesAreVisible => ItemTypes[_selectedItemType] == "Pet" ||
                                                ItemTypes[_selectedItemType] == "Seed";
 
-        public DelegateCommand SelectEvolutionCommand => new(() => { });
-
         public DelegateCommand SaveItemCommand => new(SaveItem);
 
-        public NewPetViewModel(IItemBuilder itemBuilder, IItemService itemService)
+        public NewPetViewModel(IItemBuilder itemBuilder, IItemService itemService, IRegionManager regionManager)
         {
             _itemBuilder = itemBuilder;
             _itemService = itemService;
+            _regionManager = regionManager;
         }
 
-        private void SaveItem() => _itemService.CreateNewItem(_itemBuilder);
+        private void SaveItem()
+        {
+            _itemService.CreateNewItem(_itemBuilder);
+            _regionManager.RequestNavigate("Shell", nameof(ViewAll));
+        }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
+            RaisePropertyChanged(nameof(EvolutionOptions));
+
             if (navigationContext.Parameters["Item"] == null)
             {
                 return;

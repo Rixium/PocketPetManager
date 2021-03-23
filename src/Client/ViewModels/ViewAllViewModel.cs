@@ -11,7 +11,7 @@ using Prism.Regions;
 namespace Client.ViewModels
 {
     [UsedImplicitly]
-    internal class ViewAllViewModel : BindableBase
+    internal class ViewAllViewModel : BindableBase, INavigationAware
     {
         private readonly IItemService _itemService;
         private readonly IRegionManager _regionManager;
@@ -58,6 +58,15 @@ namespace Client.ViewModels
 
             _itemService.DeleteItem(_items.ElementAt(SelectedItem));
             Refresh.Execute();
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext) => Refresh.Execute();
+
+        public bool IsNavigationTarget(NavigationContext navigationContext) =>
+            navigationContext.Uri.ToString().Equals(nameof(ViewAll));
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
         }
     }
 }

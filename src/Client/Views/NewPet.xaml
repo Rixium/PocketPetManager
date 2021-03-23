@@ -52,7 +52,9 @@
                 <TextBlock Text="Level to Evolve" />
                 <TextBox Text="{Binding LevelToEvolution}" />
                 <TextBlock Text="Evolves To" />
-                <Button Content="Select Evolution" Command="{Binding SelectEvolutionCommand}" />
+                <ComboBox ItemsSource="{Binding EvolutionOptions}"
+                          DisplayMemberPath="Name"
+                          SelectedIndex="{Binding SelectedEvolution}" />
             </StackPanel>
             <StackPanel
                 Visibility="{Binding ItemPropertiesAreVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
