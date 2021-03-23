@@ -4,7 +4,7 @@ This is a small tool designed to quickly help me define evolution trees and othe
 ## How?
 Define items in the UI, and create evolution trees easily.
 
-![image](https://user-images.githubusercontent.com/3577800/112071155-34e13980-8b67-11eb-97b7-a100882a8d3a.png)
+![image](https://user-images.githubusercontent.com/3577800/112075071-a6bd8100-8b6f-11eb-9330-3644944672f3.png)
 
 Export as a LUA table easily.
 
