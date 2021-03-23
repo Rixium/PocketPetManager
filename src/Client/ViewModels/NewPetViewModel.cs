@@ -209,6 +209,7 @@ namespace Client.ViewModels
 
             SelectedPetType = PetTypes.ToList().IndexOf(item.Type);
             SelectedItemType = ItemTypes.ToList().IndexOf(item.ItemType);
+            SelectedEvolution = EvolutionOptions.ToList().FindIndex(x => x.ItemId == item.EvolvesTo);
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext) =>
